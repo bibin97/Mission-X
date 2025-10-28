@@ -32,7 +32,7 @@ export default function Navbar() {
           <img
             src={mxlogo}
             alt="Mission X Logo"
-            className="h-10 md:h-12 object-contain brightness-110 contrast-125 drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]"
+            className="h-15 md:h-18 object-contain brightness-110 contrast-125 drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]"
           />
         </div>
 
