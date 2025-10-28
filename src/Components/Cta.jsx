@@ -150,7 +150,7 @@ export default function CTA() {
           <div className="cta-buttons flex flex-col sm:flex-row gap-8 justify-center mb-12">
             <SlideButton
               as="a"
-              href="https://wa.me/9061727180"
+              href="https://wa.me/8281832158"
               baseBg="black"
               fillColor="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
               baseText="white"
