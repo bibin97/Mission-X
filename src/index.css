@@ -194,4 +194,7 @@ html {
     scroll-behavior: smooth;
   }
 }
+.section-spacing {
+  @apply py-[clamp(2rem,4vw,4.5rem)] mb-[clamp(2rem,4vw,4rem)];
+}
 

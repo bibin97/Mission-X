@@ -16,23 +16,26 @@ export default function Navbar() {
   }, { scope: navbarRef });
 
   const navItems = [
+    { href: "#hero", label: "Home" },
     { href: "#features", label: "Features" },
     { href: "#missions", label: "Missions" },
     { href: "#testimonials", label: "Reviews" },
   ];
 
-  // Utility to close menu and allow navigation
   const handleNavClick = () => setIsMenuOpen(false);
 
   return (
-    <header ref={navbarRef} className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10">
+    <header
+      ref={navbarRef}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10"
+    >
       <nav className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between">
         {/* Logo Section */}
         <div className="navbar-brand flex items-center gap-2.5">
           <img
             src={mxlogo}
             alt="Mission X Logo"
-            className="h-15 md:h-18 object-contain brightness-110 contrast-125 drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]"
+            className="h-14 md:h-16 object-contain brightness-110 contrast-125 drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]"
           />
         </div>
 
@@ -42,9 +45,11 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-black font-semibold hover:text-teal-700 transition-colors duration-200 text-base"
+              className="relative text-black font-semibold text-base transition-colors duration-300 group"
             >
               {item.label}
+              {/* underline animation */}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-teal-700 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
@@ -58,9 +63,8 @@ export default function Navbar() {
             fillColor="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
             hoverText="black"
             baseText="white"
-            className="shadow-2xl hover:from-teal-700 hover:to-green-500 hover:shadow-teal-700 transform hover:scale-110 transition-all duration-500 text-lg px-8 py-4  border border-teal-400/40 font-bold rounded-full"
+            className="shadow-2xl hover:from-teal-700 hover:to-green-500 hover:shadow-teal-700 transform hover:scale-110 transition-all duration-500 text-lg px-8 py-4 border border-teal-400/40 font-bold rounded-full"
           >
-            <span className="text-lg"></span>
             Join Premium
           </SlideButton>
         </div>
@@ -80,7 +84,11 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
         <div className="px-6 pb-4 bg-[#1a1d23] border-t border-white/5">
           <div className="flex flex-col gap-4 py-4">
             {navItems.map((item) => (
@@ -99,7 +107,6 @@ export default function Navbar() {
                 className="flex items-center justify-center gap-2 bg-gradient-to-r from-teal-700 to-teal-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={handleNavClick}
               >
-                <span className="text-lg"></span>
                 Join Premium
               </a>
             </div>

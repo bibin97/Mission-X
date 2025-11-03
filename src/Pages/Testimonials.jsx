@@ -1,44 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import PaperCurlMouseCard from "../Components/Musetilt"; // <-- Use your paper curl component!
+import PaperCurlMouseCard from "../Components/Mousetilt";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Testimonials() {
   const sectionRef = useRef(null);
 
-  useGSAP(() => {
-    gsap.from(".testimonial-card", {
-      opacity: 0,
-      y: 60,
-      duration: 0.8,
-      ease: "power3.out",
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        once: false
-      }
-    });
-    gsap.from(".testimonial-title", {
-      opacity: 0,
-      y: 30,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-      }
-    });
-  }, { scope: sectionRef });
-
   const testimonials = [
     {
       id: 1,
       rating: 5,
-      content: "Mission X took me from struggling with math to scoring a 95+! The AI mentor made every topic feel easy.",
+      content:
+        "Mission X took me from struggling with math to scoring 95+! The AI mentor made every topic simple and fun.",
       achievement: "Top Scorer",
       avatar: "👩‍🎓",
       author: "Arushi Singh",
@@ -47,7 +22,8 @@ export default function Testimonials() {
     {
       id: 2,
       rating: 5,
-      content: "The animated lessons and step-by-step missions kept me motivated. I understood concepts faster than ever before.",
+      content:
+        "The missions helped me gain confidence faster than any book. The visuals were next level!",
       achievement: "Confidence Booster",
       avatar: "👨‍🏫",
       author: "Mr. Kumar",
@@ -56,7 +32,8 @@ export default function Testimonials() {
     {
       id: 3,
       rating: 4,
-      content: "From algebra to geometry, the missions are perfectly crafted. The WhatsApp community helped me stay on track.",
+      content:
+        "From algebra to geometry, the content is perfect. The WhatsApp community keeps you on track.",
       achievement: "Full Syllabus Completion",
       avatar: "👩‍💻",
       author: "Priya Verma",
@@ -65,7 +42,8 @@ export default function Testimonials() {
     {
       id: 4,
       rating: 5,
-      content: "Loved the quick answers and instant help from the premium AI mentor. Highly recommended for all learners!",
+      content:
+        "I love the instant answers from the premium AI mentor. Super easy to learn!",
       achievement: "Fastest Doubt Solving",
       avatar: "🧑‍🎓",
       author: "Rohit Sharma",
@@ -74,8 +52,9 @@ export default function Testimonials() {
     {
       id: 5,
       rating: 4,
-      content: "The interactive cards and real progress bars made math fun. I actually look forward to new missions!",
-      achievement: "Enjoyed Learning",
+      content:
+        "The interactive cards made learning math so fun! My child actually enjoys practice time.",
+      achievement: "Parent Approved",
       avatar: "👧",
       author: "Mehak Bansal",
       role: "Parent",
@@ -83,7 +62,8 @@ export default function Testimonials() {
     {
       id: 6,
       rating: 5,
-      content: "I improved my math score by 20 points in just one month. These missions are a game changer!",
+      content:
+        "I improved my math score by 20 points in one month. The missions are game changers!",
       achievement: "Rapid Improvement",
       avatar: "👨‍💼",
       author: "Aditya Menon",
@@ -91,81 +71,126 @@ export default function Testimonials() {
     },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".testimonial-card");
+      gsap.set(cards, { opacity: 1, y: 0 });
+      gsap.from(cards, {
+        opacity: 0,
+        y: 50,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section ref={sectionRef} id="testimonials" className="relative py-32 text-black">
-      <div className="relative mx-auto max-w-7xl px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white text-sm font-semibold mb-4">
+    <section
+      ref={sectionRef}
+      id="testimonials"
+      className="relative z-10  text-black py-20 sm:py-28 md:py-32 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* === Section Header === */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white text-sm sm:text-base font-semibold mb-4">
             <span className="w-2 h-2 bg-teal-700 rounded-full animate-pulse" />
             Trusted by 10,000+ Students
           </div>
-          <h2 className="testimonial-title text-4xl md:text-6xl font-black">
-            <span className="text-transparent bg-clip-text bg-teal-700">
-              What Parents and Students
-            </span>
-            <br />
-            <span className="text-transparent bg-clip-text bg-teal-700">
-              Say About Mission X
-            </span>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-green-600 mb-3 leading-tight">
+            What Students & Parents Say
           </h2>
-          <p className="mt-6 text-lg text-black max-w-3xl mx-auto">
-            Real stories from real students and parents who transformed their learning journey with Mission X.
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+            Real reviews from learners who improved their confidence and results
+            through Mission X.
           </p>
+          </div>
         </div>
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+        {/* === Testimonials Grid === */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-24 sm:mb-32">
           {testimonials.map((t) => (
             <PaperCurlMouseCard
-                          key={testimonials.id}
-                          maxTilt={18}
-                          maxSkew={11}
-                          scale={1.07}
-                          bounce={0.23}
-                          friction={0.83}
-                          className="mission-card group relative bg-white backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 bg-white p-5"
-                        >
-              <div className="flex items-center gap-1 mb-4">
-                {Array.from({ length: t.rating }, (_, i) => (
-                  <span key={i} className="text-yellow-400 text-lg">★</span>
-                ))}
-              </div>
-              <blockquote className="text-black leading-relaxed mb-6 italic">
-                “{t.content}”
-              </blockquote>
-              <div className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-bold mb-4 border border-teal-400/30">
-                🏆 {t.achievement}
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-teal-700 to-green-700 rounded-full flex items-center justify-center text-2xl shadow-lg border border-teal-400/30">
-                  {t.avatar}
+              key={t.id}
+              maxTilt={16}
+              maxSkew={8}
+              scale={1.03}
+              bounce={0.25}
+              friction={0.85}
+            >
+              <article className="testimonial-card bg-white border border-teal-700 rounded-2xl shadow-xl hover:shadow-2xl p-6 sm:p-8 transition-all duration-300">
+                <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <span key={i} className="text-white text-base sm:text-lg">★</span>
+                    ))}
+                  </div>
+                  <div className="text-xs sm:text-sm px-3 py-1 bg-teal-50 text-teal-700 rounded-full font-semibold border border-teal-700">
+                    🏆 {t.achievement}
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold">{t.author}</h4>
-                  <p className="text-black text-sm">{t.role}</p>
+
+                <blockquote className="text-gray-900 italic text-sm sm:text-base md:text-lg leading-relaxed mb-5">
+                  “{t.content}”
+                </blockquote>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-md bg-gradient-to-r from-teal-700 to-green-600 border border-teal-200">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base">{t.author}</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">{t.role}</p>
+                  </div>
                 </div>
-              </div>
+              </article>
             </PaperCurlMouseCard>
           ))}
         </div>
-        {/* Stats */}
-        <div className="bg-white backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-teal-700">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              ["10,000+", "Happy Students", "And counting"],
-              ["4.9/5", "Average Rating", "Based on 2,500+ reviews"],
-              ["95%", "Success Rate", "Students scoring 90+"],
-              ["25", "Days Average", "To complete syllabus"]
-            ].map(([num, label, sub], i) => (
-              <div key={i}>
-                <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-teal-700">{num}</div>
-                <div className="text-black font-semibold mt-2">{label}</div>
-                <div className="text-sm text-black mt-1">{sub}</div>
-              </div>
-            ))}
+
+ {/* === Fully Responsive Stats Section === */}
+<div className="mx-auto w-full max-w-6xl px-4">
+  <div className="rounded-3xl border border-teal-700 p-4 sm:p-6 md:p-10 text-center shadow-lg bg-white">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
+      {[
+        { num: "10,000+", label: "Happy Students", sub: "and counting" },
+        { num: "4.9/5", label: "Average Rating", sub: "from 2,000+ reviews" },
+        { num: "95%", label: "Success Rate", sub: "scored 90+ consistently" },
+        { num: "25", label: "Avg Days", sub: "to complete syllabus" },
+      ].map((d, i) => (
+        <div
+          key={i}
+          className="flex flex-col items-center justify-center text-center"
+        >
+          {/* number */}
+          <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-green-600 leading-tight mb-2 sm:mb-3">
+            {d.num}
+          </div>
+
+          {/* label */}
+          <div className="font-semibold text-black text-sm sm:text-base md:text-lg leading-snug mb-1">
+            {d.label}
+          </div>
+
+          {/* subtext */}
+          <div className="text-black text-xs sm:text-sm md:text-base leading-snug">
+            {d.sub}
           </div>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
     </section>
   );
 }

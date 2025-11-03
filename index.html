@@ -1,22 +1,62 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- ✅ Character Encoding -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./public/favicon.png" />
 
+    <!-- ✅ Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- ✅ Viewport for responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- index.html -->
-<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
 
-    <!-- index.html -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- ✅ SEO Meta Tags -->
+    <title>Mission X </title>
+    <meta name="description" content="Mission X is an AI-powered education platform that helps students learn faster with personalized missions, interactive mentoring, and real-time progress tracking." />
+    <meta name="keywords" content="Mission X, AI learning, education platform, online mentor, personalized learning" />
+    <meta name="author" content="Mission X Team" />
 
-    <title>mission-x</title>
+    <!-- ✅ Open Graph (for social sharing) -->
+    <meta property="og:title" content="Mission X | AI-Powered Learning Platform" />
+    <meta property="og:description" content="Join Mission X and experience AI-driven education designed for your success." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/meta-preview.png" />
+    <meta property="og:url" content="https://missionx.app" />
+
+    <!-- ✅ Theme Color for mobile browsers -->
+    <meta name="theme-color" content="#0d9488" />
+
+    <!-- ✅ Fonts (Google Fonts: Poppins) -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ✅ Manifest (optional, for PWA or branding) -->
+    <!-- <link rel="manifest" href="/manifest.json" /> -->
+
+    <!-- ✅ Accessibility & SEO extras -->
+    <meta name="robots" content="index, follow" />
   </head>
-  <body>
+
+  <body class="font-poppins antialiased bg-white text-black">
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
+    <!-- ✅ React Mount Point -->
     <div id="root"></div>
+
+    <!-- ✅ Main Entry Script -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
