@@ -94,8 +94,8 @@ export default function Hero() {
         {/* === Left Section === */}
         <div className="space-y-8 text-center lg:text-left">
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-3xl bg-black border border-black text-white text-sm sm:text-lg font-bold shadow-2xl hover:scale-105 transition-transform duration-300">
-            <div className="w-3 sm:w-4 h-3 sm:h-4 bg-teal-700 rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-3xl bg-teal-700 border border-teal-700 text-white text-sm sm:text-lg font-bold shadow-2xl hover:scale-105 transition-transform duration-300">
+            <div className="w-3 sm:w-4 h-3 sm:h-4 bg-yellow-500 rounded-full animate-pulse" />
             Premium AI-Powered Learning
           </div>
 
@@ -121,10 +121,10 @@ export default function Hero() {
             <SlideButton
               as="a"
               href="#join"
-              baseBg="black"
-              fillColor="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
-              hoverText="black"
-              baseText="white"
+              baseBg="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
+              fillColor="black"
+              hoverText="white"
+              baseText="black"
               expandedWidth={240}
               collapsedWidth={180}
               className="font-black rounded-full text-sm sm:text-base"
