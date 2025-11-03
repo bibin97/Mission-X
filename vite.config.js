@@ -5,32 +5,18 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// ✅ Fix for __dirname in ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-
-  // ✅ Resolve clean import aliases
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@components": path.resolve(__dirname, "src/components"),
+      "@components": path.resolve(__dirname, "src/Components"),
       "@assets": path.resolve(__dirname, "src/assets"),
-      "@styles": path.resolve(__dirname, "src/styles"),
     },
   },
-
-  // ✅ Local development server
-  server: {
-    port: 3000,
-    strictPort: true, // Exit if port is taken
-    open: true, // Auto-open browser
-    host: true, // Expose to LAN (for testing on mobile)
-  },
-
-  // ✅ Production build optimization
   build: {
     target: "esnext",
     minify: "esbuild",
@@ -38,7 +24,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        // ✅ FIXED: function-based manualChunks for Vite 5+ / Rollup 3+
+        // ✅ Function version (fixes “manualChunks is not a function”)
         manualChunks(id) {
           if (id.includes("node_modules")) {
             return id
@@ -50,11 +36,5 @@ export default defineConfig({
         },
       },
     },
-  },
-
-  // ✅ Optional preview config for "vite preview"
-  preview: {
-    port: 4173,
-    open: true,
   },
 });
