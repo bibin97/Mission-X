@@ -1,3 +1,4 @@
+// src/components/Hero.jsx
 import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -15,11 +16,13 @@ export default function Hero() {
 
   useGSAP(
     () => {
+      // Text entrance animations
       gsap.from(".hero-title", { opacity: 0, y: 40, duration: 1.2, ease: "power3.out" });
       gsap.from(".hero-sub", { opacity: 0, y: 30, duration: 1, delay: 0.2, ease: "power3.out" });
       gsap.from(".hero-buttons", { opacity: 0, y: 20, duration: 0.8, delay: 0.4, ease: "power3.out" });
       gsap.from(".hero-features", { opacity: 0, y: 20, duration: 0.8, delay: 0.6, ease: "power3.out" });
 
+      // Floating effect
       gsap.timeline({ repeat: -1, yoyo: true }).to(rocket.current, {
         y: -15,
         rotate: 3,
@@ -27,12 +30,14 @@ export default function Hero() {
         ease: "power1.inOut",
       });
 
+      // Parallax background
       gsap.to(bgLayer.current, {
         yPercent: -30,
         ease: "none",
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
       });
 
+      // Floating particles
       gsap.to(".particle", {
         y: -20,
         duration: 3,
@@ -89,8 +94,8 @@ export default function Hero() {
         {/* === Left Section === */}
         <div className="space-y-8 text-center lg:text-left">
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-3xl bg-teal-700 border border-teal-700 text-white text-sm sm:text-lg font-bold shadow-2xl hover:scale-105 transition-transform duration-300">
-            <div className="w-3 sm:w-4 h-3 sm:h-4 bg-yellow-500 rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-3xl bg-black border border-black text-white text-sm sm:text-lg font-bold shadow-2xl hover:scale-105 transition-transform duration-300">
+            <div className="w-3 sm:w-4 h-3 sm:h-4 bg-teal-700 rounded-full animate-pulse" />
             Premium AI-Powered Learning
           </div>
 
@@ -98,7 +103,9 @@ export default function Hero() {
           <h1 className="hero-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
             <span className="block text-transparent bg-clip-text bg-teal-700 drop-shadow-2xl">Score 90+</span>
             <span className="block text-transparent bg-clip-text bg-teal-700 drop-shadow-2xl">in Maths</span>
-            <span className="block text-black text-2xl sm:text-4xl md:text-5xl font-bold mt-3">in Just 25 Missions</span>
+            <span className="block text-black text-2xl sm:text-4xl md:text-5xl font-bold mt-3">
+              in Just 25 Missions
+            </span>
           </h1>
 
           {/* Subtitle */}
@@ -114,10 +121,10 @@ export default function Hero() {
             <SlideButton
               as="a"
               href="#join"
-              baseBg="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
-              fillColor="black"
-              hoverText="white"
-              baseText="black"
+              baseBg="black"
+              fillColor="linear-gradient(135deg, #0d9488 0%, #10b981 100%)"
+              hoverText="black"
+              baseText="white"
               expandedWidth={240}
               collapsedWidth={180}
               className="font-black rounded-full text-sm sm:text-base"
@@ -138,47 +145,42 @@ export default function Hero() {
             </SlideButton>
           </div>
 
-          {/* Feature Cards (only these wrapped in PaperCurlMouseCard) */}
-         {/* Feature Cards (make all 4 identical layout & height) */}
-<div className="hero-features mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-2 gap-6">
-  {[
-    ["✓", "25 Premium Missions", "Complete syllabus with clear challenges"],
-    ["AI", "Premium AI Mentor", "Instant answers and guided help"],
-    ["👨‍🏫", "Expert Mentors", "Personalized support when you need it"],
-    ["🌐", "Premium Community", "Collaborate and grow together"],
-  ].map(([icon, title, desc], i) => (
-    <PaperCurlMouseCard
-      key={i}
-      maxTilt={14}
-      maxSkew={8}
-      scale={1.05}
-      bounce={0.25}
-      friction={0.85}
-    >
-      <div className="feature-card relative flex flex-col justify-start h-full min-h-[200px] p-6 sm:p-7 rounded-2xl bg-white border border-teal-400/20 hover:border-teal-400/40 hover:shadow-2xl transition-all duration-500">
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-teal-700 rounded-xl flex items-center justify-center shadow-lg border border-teal-300/30">
-            <span className="text-black text-lg sm:text-2xl font-bold">{icon}</span>
+          {/* Feature Cards with PaperCurlMouseCard */}
+          <div className="hero-features mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {[
+              ["✓", "25 Premium Missions", "Complete syllabus with clear challenges"],
+              ["AI", "Premium AI Mentor", "Instant answers and guided help"],
+              ["👨‍🏫", "Expert Mentors", "Personalized support when you need it"],
+              ["🌐", "Premium Community", "Collaborate and grow together"],
+            ].map(([icon, title, desc], i) => (
+              <PaperCurlMouseCard
+                key={i}
+                maxTilt={10}
+                maxSkew={6}
+                scale={1.02}
+                bounce={0.25}
+                friction={0.85}
+                className="w-full"
+              >
+                <div className="group relative p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-white border border-teal-400/20 hover:border-teal-400/40 hover:shadow-xl transition-all duration-500 flex items-start gap-2.5 sm:gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-teal-700 rounded-md sm:rounded-lg flex items-center justify-center shadow-md border border-teal-300/30">
+                    <span className="text-white text-xs sm:text-sm md:text-base font-bold">{icon}</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-black text-sm sm:text-base leading-tight">{title}</p>
+                    <p className="text-gray-700 text-xs sm:text-sm leading-snug">{desc}</p>
+                  </div>
+                </div>
+              </PaperCurlMouseCard>
+            ))}
           </div>
-          <div className="flex flex-col">
-            <p className="font-extrabold text-black text-lg sm:text-xl leading-snug mb-1">
-              {title}
-            </p>
-            <p className="text-black text-sm sm:text-base leading-relaxed opacity-90">
-              {desc}
-            </p>
-          </div>
-        </div>
-      </div>
-    </PaperCurlMouseCard>
-  ))}
-</div>
         </div>
 
         {/* === Right Animated Green Card === */}
         <div className="relative flex justify-center lg:justify-end">
           <div ref={rocket} className="relative z-10 scale-[0.8] sm:scale-90 md:scale-100">
             <div className="relative w-[240px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-square mx-auto">
+              {/* Main Card */}
               <div className="absolute inset-0 bg-teal-700 rounded-3xl shadow-2xl transform rotate-12 hover:rotate-6 transition-transform duration-1000 border border-teal-700">
                 <div className="absolute inset-4 bg-black/20 rounded-2xl backdrop-blur-sm border border-teal-700">
                   <div className="absolute top-8 left-6 right-6 h-16 sm:h-20 bg-gradient-to-r from-teal-700 to-green-700 rounded-2xl flex items-center justify-center shadow-lg border border-teal-700">
@@ -195,10 +197,36 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
+
+              {/* Premium Floating Luxury Elements */}
+              <div className="absolute -top-10 -right-6 w-20 h-20 bg-gradient-to-r from-teal-900 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl animate-bounce transform rotate-12 border border-yellow-300/40">
+                <span className="text-black text-3xl font-bold">➕</span>
+              </div>
+
+              <div
+                className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-teal-900 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl animate-bounce transform -rotate-12 border border-amber-300/40"
+                style={{ animationDelay: "0.5s" }}
+              >
+                <span className="text-black text-2xl font-bold">➖</span>
+              </div>
+
+              <div
+                className="absolute top-1/2 -left-8 w-14 h-14 bg-gradient-to-r from-teal-900 to-green-700 rounded-full flex items-center justify-center shadow-2xl animate-bounce transform rotate-45 border border-yellow-400/40"
+                style={{ animationDelay: "1s" }}
+              >
+                <span className="text-black text-xl font-bold">✖️</span>
+              </div>
+
+              <div
+                className="absolute top-1/4 -right-8 w-12 h-12 bg-gradient-to-r from-teal-900 to-green-700 rounded-full flex items-center justify-center shadow-2xl animate-bounce transform -rotate-45 border border-amber-400/40"
+                style={{ animationDelay: "1.5s" }}
+              >
+                <span className="text-black text-lg font-bold">➗</span>
+              </div>
             </div>
           </div>
 
-          {/* Glow Background */}
+          {/* Premium Luxury Background Glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-teal-400/30 to-green-600/30 rounded-full blur-3xl scale-150 animate-pulse"></div>
           <div
             className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-yellow-500/20 rounded-full blur-2xl scale-125 animate-pulse"
