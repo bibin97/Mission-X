@@ -102,7 +102,7 @@ export default function Features() {
     >
       {/* Floating Background Decorations */}
       <div className="absolute inset-0 opacity-10 sm:opacity-20">
-        <div className="absolute top-[10%] left-[8%] w-10 sm:w-16 lg:w-24 h-10 sm:h-16 lg:h-24 bg-gradient-to-r from-teal-700 to-green-700 rotate-45 border border-teal-700 **:animate-float" />
+        <div className="absolute top-[10%] left-[8%] w-10 sm:w-16 lg:w-24 h-10 sm:h-16 lg:h-24 bg-gradient-to-r from-teal-700 to-green-700 rotate-45 border border-teal-700 animate-float" />
         <div
           className="absolute top-[25%] right-[8%] w-8 sm:w-12 lg:w-16 h-8 sm:h-12 lg:h-16 bg-gradient-to-r from-teal-700 to-green-700 rotate-12 border border-teal-700 animate-float"
           style={{ animationDelay: "1s" }}
@@ -141,44 +141,48 @@ export default function Features() {
         </div>
 
         {/* Features Grid */}
-       {/* Features Grid */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[clamp(1rem,2vw,3rem)]">
-  {items.map((item) => (
-    <PaperCurlMouseCard
-      key={item.title}
-      maxTilt={15}
-      maxSkew={10}
-      scale={1.05}
-      bounce={0.22}
-      friction={0.8}
-    >
-      <div className="feature-card relative bg-white rounded-[1.25rem] shadow-2xl hover:shadow-3xl transition-all duration-700 p-[clamp(1rem,3vw,2.5rem)] hover:scale-[1.03] border border-teal-300/20">
-        <div
-          className={`absolute inset-0 bg-gradient-to-br ${item.bgGradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700`}
-        />
-        <div className="relative z-10 flex flex-col h-full justify-between">
-          <div>
-            {/* ✅ Changed icon background to teal-700 */}
-            <div
-              className="inline-flex items-center justify-center w-[clamp(3.5rem,5vw,5rem)] h-[clamp(3.5rem,5vw,5rem)] rounded-2xl bg-teal-700 shadow-xl mb-5 transition-transform duration-500 border border-teal-600"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[clamp(1rem,2vw,3rem)] auto-rows-fr items-stretch">
+          {items.map((item) => (
+            <PaperCurlMouseCard
+              key={item.title}
+              maxTilt={15}
+              maxSkew={10}
+              scale={1.05}
+              bounce={0.22}
+              friction={0.8}
             >
-              <span className="text-white text-[clamp(1.6rem,3vw,2.2rem)]">
-                {item.icon}
-              </span>
-            </div>
-            <h3 className="text-[clamp(1.1rem,1.7vw,1.5rem)] font-extrabold text-gray-900 mb-3">
-              {item.title}
-            </h3>
-            <p className="text-[clamp(0.9rem,1.2vw,1.1rem)] text-gray-700 leading-relaxed font-medium">
-              {item.desc}
-            </p>
-          </div>
-        </div>
-      </div>
-    </PaperCurlMouseCard>
-  ))}
-</div>
+              {/* NOTE: h-full + flex/create consistent internal spacing so every card matches height */}
+              <div className="feature-card relative bg-white rounded-[1.25rem] shadow-2xl hover:shadow-3xl transition-all duration-700 p-[clamp(1rem,3vw,2.5rem)] hover:scale-[1.03] border border-teal-300/20 flex flex-col h-full justify-between">
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${item.bgGradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700`}
+                />
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    {/* icon */}
+                    <div
+                      className="inline-flex items-center justify-center w-[clamp(3.5rem,5vw,5rem)] h-[clamp(3.5rem,5vw,5rem)] rounded-2xl bg-teal-700 shadow-xl mb-5 transition-transform duration-500 border border-teal-600"
+                    >
+                      <span className="text-white text-[clamp(1.6rem,3vw,2.2rem)]">
+                        {item.icon}
+                      </span>
+                    </div>
 
+                    <h3 className="text-[clamp(1.1rem,1.7vw,1.5rem)] font-extrabold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-[clamp(0.9rem,1.2vw,1.1rem)] text-gray-700 leading-relaxed font-medium">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* optional CTA or spacing area kept consistent */}
+                  <div className="mt-4" />
+                </div>
+              </div>
+            </PaperCurlMouseCard>
+          ))}
+        </div>
 
         {/* Stats Section */}
         <div className="my-[clamp(4rem,8vw,8rem)] bg-white/90 backdrop-blur-xl rounded-3xl p-[clamp(1.5rem,4vw,3rem)] border border-teal-700/30 shadow-2xl gap-20">

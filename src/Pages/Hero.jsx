@@ -146,34 +146,57 @@ export default function Hero() {
           </div>
 
           {/* Feature Cards with PaperCurlMouseCard */}
-          <div className="hero-features mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {[
-              ["✓", "25 Premium Missions", "Complete syllabus with clear challenges"],
-              ["AI", "Premium AI Mentor", "Instant answers and guided help"],
-              ["👨‍🏫", "Expert Mentors", "Personalized support when you need it"],
-              ["🌐", "Premium Community", "Collaborate and grow together"],
-            ].map(([icon, title, desc], i) => (
-              <PaperCurlMouseCard
-                key={i}
-                maxTilt={10}
-                maxSkew={6}
-                scale={1.02}
-                bounce={0.25}
-                friction={0.85}
-                className="w-full"
-              >
-                <div className="group relative p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-white border border-teal-400/20 hover:border-teal-400/40 hover:shadow-xl transition-all duration-500 flex items-start gap-2.5 sm:gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-teal-700 rounded-md sm:rounded-lg flex items-center justify-center shadow-md border border-teal-300/30">
-                    <span className="text-white text-xs sm:text-sm md:text-base font-bold">{icon}</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-bold text-black text-sm sm:text-base leading-tight">{title}</p>
-                    <p className="text-gray-700 text-xs sm:text-sm leading-snug">{desc}</p>
-                  </div>
-                </div>
-              </PaperCurlMouseCard>
-            ))}
+      <div className="hero-features mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+  {[
+    ["✓", "25 Premium Missions", "Complete syllabus with clear challenges"],
+    ["AI", "Premium AI Mentor", "Instant answers and guided help"],
+    ["👨‍🏫", "Expert Mentors", "Personalized support when you need it"],
+    ["🌐", "Premium Community", "Collaborate and grow together"],
+  ].map(([icon, title, desc], i) => {
+    // Line break only on desktop/tablet for Expert Mentors
+    const formattedTitle =
+      title === "Expert Mentors" ? (
+        <>
+          Expert <span className="hidden sm:block">Mentors</span>
+          <span className="inline sm:hidden">&nbsp;Mentors</span>
+        </>
+      ) : (
+        title
+      );
+
+    return (
+      <PaperCurlMouseCard
+        key={i}
+        maxTilt={10}
+        maxSkew={6}
+        scale={1.02}
+        bounce={0.25}
+        friction={0.85}
+        className="w-full"
+      >
+        <div className="group relative p-3 sm:p-4 md:p-5 rounded-xl bg-white border border-teal-400/20 hover:border-teal-400/40 hover:shadow-xl transition-all duration-500 flex items-start gap-2.5 sm:gap-3">
+          {/* Icon */}
+          <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-teal-700 rounded-lg flex items-center justify-center shadow-md border border-teal-300/30">
+            <span className="text-white text-xs sm:text-sm md:text-base font-bold">{icon}</span>
           </div>
+
+          {/* Text */}
+          <div className="flex-1 min-w-0 break-words">
+            <p className="font-bold text-black text-sm sm:text-base leading-tight break-words whitespace-normal">
+              {formattedTitle}
+            </p>
+            <p className="text-gray-700 text-xs sm:text-sm leading-snug break-words whitespace-normal">
+              {desc}
+            </p>
+          </div>
+        </div>
+      </PaperCurlMouseCard>
+    );
+  })}
+</div>
+
+
+
         </div>
 
         {/* === Right Animated Green Card === */}

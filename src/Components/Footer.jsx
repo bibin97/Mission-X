@@ -26,7 +26,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 sm:mt-10 text-center text-xs sm:text-sm text-gray-500">
+        <div className="mt-8 sm:mt-10 text-center text-xs sm:text-sm text-black">
           © {new Date().getFullYear()}{" "}
           <span className="font-semibold text-teal-700">Mission X</span>. All rights reserved.
         </div>
